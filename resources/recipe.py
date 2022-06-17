@@ -74,7 +74,7 @@ class RecipeListResource(Resource) :
             # select문은 dictionary = True를 해준다.
             cursor = connection.cursor( dictionary = True )
 
-            cursor.execute(query, record)
+            cursor.execute(query)
 
             # select 문은 아래 함수를 이용해서 데이터를 가져온다.
             result_list = cursor.fetchall()
@@ -90,4 +90,6 @@ class RecipeListResource(Resource) :
             cursor.close()
             connection.close()
 
-        return
+            return {"error" : str(e)}, 503
+
+        return {"result" : "success", "count" : len(result_list), "result_list" : result_list},200
