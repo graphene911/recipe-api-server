@@ -96,7 +96,7 @@ class UserRegisterResource(Resource) :
         # access_token = create_access_token(user_id, expires_delta=datetime.timedelta(minutes = 1))
 
         return {"result" : "success", 'access_token' : access_token}, 200
-        s
+        
 # 로그인하는 API
 class UserLoginResource(Resource) :
     def post(self) :
