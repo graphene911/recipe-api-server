@@ -1,3 +1,4 @@
+from datetime import datetime
 from http import HTTPStatus
 from flask import request
 from flask_jwt_extended import create_access_token
@@ -89,10 +90,13 @@ class UserRegisterResource(Resource) :
         
         # user_id를 바로 보내면 안되고
         # JWT로 암호화 해서 보내준다.
+        
         access_token = create_access_token(user_id)
+        # 토큰 유효기간 만료 시키는 방법
+        # access_token = create_access_token(user_id, expires_delta=datetime.timedelta(minutes = 1))
 
         return {"result" : "success", 'access_token' : access_token}, 200
-        
+        s
 # 로그인하는 API
 class UserLoginResource(Resource) :
     def post(self) :
@@ -164,5 +168,7 @@ class UserLoginResource(Resource) :
             return {'error' : '비밀번호가 맞지 않습니다..'}, 400 
         
         access_token = create_access_token(user_info['id'])
+        # 토큰 유효기간 만료 시키는 방법
+        # access_token = create_access_token(user_info['id'], expires_delta=datetime.timedelta(minutes = 1))
 
         return {'result' : 'success', 'access_token' : access_token}, 200
