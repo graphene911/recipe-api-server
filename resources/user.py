@@ -1,4 +1,3 @@
-from datetime import datetime
 from http import HTTPStatus
 from flask import request
 from flask_jwt_extended import create_access_token
@@ -30,7 +29,7 @@ class UserRegisterResource(Resource) :
             validate_email(data['email'])
 
         except EmailNotValidError as e:
-            # email is not valid, exception message is human-readable
+            
             print(str(e))
 
             return {"error" : str(e)}, 400 
