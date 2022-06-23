@@ -10,7 +10,7 @@ from email_validator import validate_email, EmailNotValidError
 from utils import check_password, hash_password
 
 
-# 회원가입은 Method = POST, '/users/register', data = username, email, password
+# 회원가입은 Method = POST, '/users/register', data = nickname, email, password
 class UserRegisterResource(Resource) :
     def post(self) :
         
